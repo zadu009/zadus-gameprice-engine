@@ -147,6 +147,7 @@
 			>
 				<stop stop-color="#9089FC" />
 				<stop offset="1" stop-color="#FF80B5" />
+				<stop offset="1" stop-color="#9089FF" />
 			</linearGradient>
 		</defs>
 	</svg>

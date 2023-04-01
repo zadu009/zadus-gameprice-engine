@@ -125,16 +125,16 @@
 						class="flex pb-6 font-medium text-gray-500 dark:text-gray-400"
 					>
 						<li>
-							<a href="#" class="mr-4 hover:underline md:mr-6 ">About</a>
+							<a href="#" class="mr-4 hover:underline md:mr-6 ">Zadu</a>
 						</li>
 						<li>
-							<a href="#" class="mr-4 hover:underline md:mr-6">Privacy Policy</a>
+							<a href="#" class="mr-4 hover:underline md:mr-6">About us</a>
 						</li>
 						<li>
-							<a href="#" class="mr-4 hover:underline md:mr-6">Licensing</a>
+							<a href="#" class="mr-4 hover:underline md:mr-6">Contact</a>
 						</li>
 						<li>
-							<a href="#" class="hover:underline">Contact</a>
+							<a href="#" class="hover:underline">Login</a>
 						</li>
 					</ul>
 				</div>

@@ -10,17 +10,19 @@
 		dialog.close();
 	};
 	const addItem = async () => {
-		games = [
-			...games,
-			{
-				id: Math.random(),
-				name,
-				platform,
-				averagePrice: await load()
-			}
-		];
-		addToTotalValue();
-		closeDialog();
+		if (validation_check(name, platform)) {
+			games = [
+				...games,
+				{
+					id: Math.random(),
+					name,
+					platform,
+					averagePrice: await load()
+				}
+			];
+			addToTotalValue();
+			closeDialog();
+		}
 	};
 	const remove = (game) => {
 		subtractFromTotalValue(game.averagePrice);
@@ -66,6 +68,16 @@
 		averagePrice = JSON.stringify(data.averagePrice);
 		return averagePrice;
 	}
+
+	function validation_check(name, platform) {
+		if (name === '') {
+			return false;
+		} else if (platform === '') {
+			return false;
+		} else {
+			return true;
+		}
+	}
 </script>
 
 <Navbar />
@@ -83,7 +95,7 @@
 						alt="Your Company"
 					/>
 					<h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-300 font-mono">
-						My Videogame Collection
+						MY VIDEOGAME COLLECTION
 					</h2>
 				</div>
 
@@ -93,28 +105,7 @@
 					role="dialog"
 					aria-modal="true"
 				>
-					<!--
-						  Background backdrop, show/hide based on slide-over state.
-					  
-						  Entering: "ease-in-out duration-500"
-							From: "opacity-0"
-							To: "opacity-100"
-						  Leaving: "ease-in-out duration-500"
-							From: "opacity-100"
-							To: "opacity-0"
-						-->
-
 					<div class="inset-y-0 justify-center flex max-w-full ">
-						<!--
-								Slide-over panel, show/hide based on slide-over state.
-					  
-								Entering: "transform transition ease-in-out duration-500 sm:duration-700"
-								  From: "translate-x-full"
-								  To: "translate-x-0"
-								Leaving: "transform transition ease-in-out duration-500 sm:duration-700"
-								  From: "translate-x-0"
-								  To: "translate-x-full"
-							  -->
 						<div class="pointer-events-auto w-screen max-w-md">
 							<div class="flex h-full flex-col">
 								<div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
@@ -203,7 +194,7 @@
 		</div>
 	</div>
 </div>
-<dialog bind:this={dialog} on:close>
+<dialog bind:this={dialog} on:close class="rounded-md">
 	<div class="rounded-md mx-auto ">
 		<div class="w-full max-w-md">
 			<div>
@@ -212,8 +203,8 @@
 					src="https://img.icons8.com/color/96/000000/controller.png"
 					alt="Your Company"
 				/>
-				<h2 class="mt-6 text-center text-2xl font-bold tracking-tight text-gray-300 font-mono">
-					Add your Videogame!
+				<h2 class="mt-6 text-center text-2xl font-bold tracking-tight text-gray-600 font-mono">
+					ADD YOUR VIDEOGAME!
 				</h2>
 			</div>
 			<form class="mt-8 space-y-6" action="#">
@@ -247,12 +238,19 @@
 					</div>
 				</div>
 
-				<div>
+				<div class="mt-8 space-y-3">
 					<button
 						on:click={addItem}
 						class="group relative flex w-full justify-center rounded-md bg-amber-500 py-2 px-3 text-sm font-semibold text-white hover:bg-amber-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 					>
 						Add
+					</button>
+
+					<button
+						on:click={closeDialog}
+						class="group relative flex w-full justify-center rounded-md bg-amber-500 py-2 pt-2 text-sm font-semibold text-white hover:bg-amber-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+					>
+						Cancel
 					</button>
 				</div>
 			</form>

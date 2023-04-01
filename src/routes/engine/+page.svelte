@@ -1,8 +1,8 @@
 <script>
 	import '../../app.css';
-	import { fly } from 'svelte/transition';
 	import Navbar from '../Navbar.svelte';
 	import Footer from '../Footer.svelte';
+	import { userProfile } from '../stores.js';
 	let name = '';
 	let platform = '';
 	let countryCode = 'de';
@@ -14,40 +14,35 @@
 	];
 	let gamedata = [];
 	export async function load() {
-		const res = await fetch('/api/game/getValue', {
-			method: 'POST',
-			body: JSON.stringify({
-				name,
-				platform,
-				countryCode
-			}),
-			headers: {
-				'Content-Type': 'application/json; charset=utf-8'
-			},
-			mode: 'cors'
-		});
-		const data = await res.json();
-		console.log(data);
-		gamedata = data.gamesList;
-		gameslist = JSON.stringify(data.gamesList);
-		averagePrice = JSON.stringify(data.averagePrice);
+		if (validation_check(name, platform)) {
+			const res = await fetch('/api/game/getValue', {
+				method: 'POST',
+				body: JSON.stringify({
+					name,
+					platform,
+					countryCode
+				}),
+				headers: {
+					'Content-Type': 'application/json; charset=utf-8'
+				},
+				mode: 'cors'
+			});
+			const data = await res.json();
+			console.log(data);
+			gamedata = data.gamesList;
+			gameslist = JSON.stringify(data.gamesList);
+			averagePrice = JSON.stringify(data.averagePrice);
+		}
 	}
 
-	let y;
-	let z;
-
-	let newZ = [];
-	$: oldZ = newZ[1];
-
-	let newY = [];
-	$: oldY = newY[1];
-
-	function updateY(event) {
-		newY.push(y);
-		if (newY.length > 5) {
-			newY.shift();
+	function validation_check(name, platform) {
+		if (name === '') {
+			return false;
+		} else if (platform === '') {
+			return false;
+		} else {
+			return true;
 		}
-		newY = newY;
 	}
 </script>
 
@@ -73,8 +68,14 @@
 					</h2>
 					<p class="mt-2 text-center text-sm text-gray-600">
 						You have a games collection?
-						<a href="signin" class="font-medium text-indigo-600 hover:text-indigo-500">Sign in</a> and
-						get a gamevalue for your whole collection!
+						{#if $userProfile.isLoggedIn == true}
+							<a href="mygames" class="font-medium text-indigo-600 hover:text-indigo-500">Sign in</a> and
+							get a gamevalue for your whole collection!
+							{:else}
+							<a href="signin" class="font-medium text-indigo-600 hover:text-indigo-500">Sign in</a> and
+							get a gamevalue for your whole collection!
+						{/if}
+
 					</p>
 				</div>
 				<form class="mt-8 space-y-6" action="#">
@@ -110,6 +111,7 @@
 
 					<div>
 						<button
+							type="submit"
 							on:click={load}
 							class="group relative flex w-full justify-center rounded-md bg-amber-500 py-2 px-3 text-sm font-semibold text-white hover:bg-amber-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 						>
@@ -120,21 +122,7 @@
 			</div>
 		</div>
 	</div>
-
 </div>
-
-<svelte:window on:scroll={updateY} bind:scrollY={y} />
-
-{#if oldY < y}
-	<div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-900">
-		<h2
-			class="mt-6 text-center text-2xl font-bold tracking-tight text-gray-300 font-mono "
-			transition:fly={{ y: 300, duration: 2000 }}
-		>
-			This is the Engine Site!
-		</h2>
-	</div>
-{/if}
 
 {#if averagePrice > 0}
 	<div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
@@ -162,28 +150,28 @@
 		</div>
 	</div>
 
-		<div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-			<h2 class="sr-only">Products</h2>
-			<div
-				class="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8"
-			>
-				{#each gamedata as data}
-					<a href={data.url} class="group">
-						<div
-							class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-800 xl:aspect-w-7 xl:aspect-h-8"
-						>
-							<img
-								src={data.imageUrl}
-								alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
-								class="object-contain h-48 w-96 object-center group-hover:opacity-75"
-							/>
-						</div>
-						<h3 class="mt-4 text-sm text-gray-400">{name}</h3>
-						<p class="mt-1 text-lg font-medium text-gray-400">{data.price}</p>
-					</a>
-				{/each}
-			</div>
+	<div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+		<h2 class="sr-only">Products</h2>
+		<div
+			class="grid grid-cols-1 gap-y-10 gap-x-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8"
+		>
+			{#each gamedata as data}
+				<a href={data.url} class="group">
+					<div
+						class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-800 xl:aspect-w-7 xl:aspect-h-8"
+					>
+						<img
+							src={data.imageUrl}
+							alt="Tall slender porcelain bottle with natural clay textured body and cork stopper."
+							class="object-contain h-48 w-96 object-center group-hover:opacity-75"
+						/>
+					</div>
+					<h3 class="mt-4 text-sm text-gray-400">{name}</h3>
+					<p class="mt-1 text-lg font-medium text-gray-400">{data.price}</p>
+				</a>
+			{/each}
 		</div>
+	</div>
 {/if}
 
-	<Footer />
+<Footer />

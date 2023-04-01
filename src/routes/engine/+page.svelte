@@ -1,7 +1,7 @@
 <script>
 	import '../../app.css';
 	import { fly } from 'svelte/transition';
-    import Navbar from '../Navbar.svelte';
+	import Navbar from '../Navbar.svelte';
 	import Footer from '../Footer.svelte';
 	let name = '';
 	let platform = '';
@@ -51,10 +51,10 @@
 	}
 </script>
 
-<Navbar/>
+<Navbar />
 
 <div
-	class="flex min-h-full items-center justify-center relative isolate overflow-hidden bg-gray-900 py-16"
+	class="flex min-h-full items-center justify-center relative isolate overflow-hidden  bg-gray-900 py-16"
 >
 	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<div class="mx-auto grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 lg:max-w-none">
@@ -73,8 +73,9 @@
 					</h2>
 					<p class="mt-2 text-center text-sm text-gray-600">
 						You have a games collection?
-						<a href="signin" class="font-medium text-indigo-600 hover:text-indigo-500">Sign in</a> and get a gamevalue for your whole collection!
-					  </p>
+						<a href="signin" class="font-medium text-indigo-600 hover:text-indigo-500">Sign in</a> and
+						get a gamevalue for your whole collection!
+					</p>
 				</div>
 				<form class="mt-8 space-y-6" action="#">
 					<input type="hidden" name="remember" value="true" />
@@ -119,30 +120,7 @@
 			</div>
 		</div>
 	</div>
-	<svg
-		class="absolute top-0 left-1/2 -z-10 h-[42.375rem] -translate-x-1/2 blur-3xl xl:-top-6"
-		viewBox="0 0 1155 678"
-		fill="none"
-	>
-		<path
-			fill="url(#09dbde42-e95c-4b47-a4d6-0c523c2fca9a)"
-			fill-opacity=".3"
-			d="M317.219 518.975L203.852 678 0 438.341l317.219 80.634 204.172-286.402c1.307 132.337 45.083 346.658 209.733 145.248C936.936 126.058 882.053-94.234 1031.02 41.331c119.18 108.451 130.68 295.337 121.53 375.223L855 299l21.173 362.054-558.954-142.079z"
-		/>
-		<defs>
-			<linearGradient
-				id="09dbde42-e95c-4b47-a4d6-0c523c2fca9a"
-				x1="1155.49"
-				x2="-78.208"
-				y1=".177"
-				y2="474.645"
-				gradientUnits="userSpaceOnUse"
-			>
-				<stop stop-color="#9089FC" />
-				<stop offset="1" stop-color="#FF80B5" />
-			</linearGradient>
-		</defs>
-	</svg>
+
 </div>
 
 <svelte:window on:scroll={updateY} bind:scrollY={y} />
@@ -177,14 +155,13 @@
 			</svg>
 
 			<div class="flex-1 space-y-6 py-1">
-				<h2 class="text-center text-2xl font-bold tracking-tight text-gray-900">
+				<h2 class="text-center text-2xl font-bold tracking-tight text-gray-400">
 					{averagePrice}
 				</h2>
 			</div>
 		</div>
 	</div>
 
-	<div class="bg-white">
 		<div class="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
 			<h2 class="sr-only">Products</h2>
 			<div
@@ -193,7 +170,7 @@
 				{#each gamedata as data}
 					<a href={data.url} class="group">
 						<div
-							class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8"
+							class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-800 xl:aspect-w-7 xl:aspect-h-8"
 						>
 							<img
 								src={data.imageUrl}
@@ -201,13 +178,12 @@
 								class="object-contain h-48 w-96 object-center group-hover:opacity-75"
 							/>
 						</div>
-						<h3 class="mt-4 text-sm text-gray-700">{name}</h3>
-						<p class="mt-1 text-lg font-medium text-gray-900">{data.price}</p>
+						<h3 class="mt-4 text-sm text-gray-400">{name}</h3>
+						<p class="mt-1 text-lg font-medium text-gray-400">{data.price}</p>
 					</a>
 				{/each}
 			</div>
 		</div>
-	</div>
 {/if}
 
-<Footer/>
+	<Footer />

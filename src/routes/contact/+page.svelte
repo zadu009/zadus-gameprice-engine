@@ -2,17 +2,22 @@
 	import '../../app.css';
 	import Navbar from '../Navbar.svelte';
 	import Footer from '../Footer.svelte';
+
+	let dialog;
+	const closeDialog = () => {
+		dialog.close();
+	};
 </script>
 
 <Navbar />
 <div class="isolate px-6 py-24 sm:py-32 lg:px-8">
 	<div class="mx-auto max-w-2xl text-center">
-		<h2 class="text-3xl tracking-tight text-gray-300 font-mono sm:text-4xl">CONTACT ZADU</h2>
+        <p class="mt-2 text-3xl font-mono tracking-tight text-gray-300 sm:text-4xl">CONTACT ZADU</p>
 		<p class="mt-2 text-lg leading-8 text-white">
 			Your message will be replied as soon as possible
 		</p>
 	</div>
-	<form action="#" method="POST" class="mx-auto mt-16 max-w-xl sm:mt-20">
+	<form class="mx-auto mt-16 max-w-xl sm:mt-20">
 		<div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
 			<div>
 				<label for="first-name" class="block text-sm font-semibold leading-6 text-gray-300"
@@ -23,6 +28,7 @@
 						type="text"
 						name="first-name"
 						id="first-name"
+                        required
 						autocomplete="given-name"
 						class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 					/>
@@ -37,6 +43,7 @@
 						type="text"
 						name="last-name"
 						id="last-name"
+                        required
 						autocomplete="family-name"
 						class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 					/>
@@ -62,6 +69,7 @@
 					<input
 						type="email"
 						name="email"
+                        required
 						id="email"
 						autocomplete="email"
 						class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -114,6 +122,7 @@
 					<textarea
 						name="message"
 						id="message"
+                        required
 						rows="4"
 						class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
 					/>
@@ -139,6 +148,7 @@
 		</div>
 		<div class="mt-10">
 			<button
+            on:click={() => dialog.showModal()}
 				type="submit"
 				class="block w-full rounded-md bg-amber-500  px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 				>Let's talk</button
@@ -146,4 +156,26 @@
 		</div>
 	</form>
 </div>
+<dialog bind:this={dialog} on:close class="rounded-md">
+	<div class="rounded-md mx-auto ">
+		<div class="w-full max-w-md">
+			<div>
+				<img
+					class="mx-auto h-12 w-auto"
+					src="https://img.icons8.com/color/96/000000/controller.png"
+					alt="Your Company"
+				/>
+				<h2 class="mt-6 text-center text-2xl font-bold tracking-tight text-gray-600 font-mono">
+					YOUR MESSAGE HAS BEEN SENT!
+				</h2>
+			</div>
+            <button
+            on:click={closeDialog}
+            class="group relative flex w-full justify-center rounded-md bg-amber-500 py-2 pt-2 text-sm font-semibold text-white hover:bg-amber-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+            OK
+        </button>
+		</div>
+	</div>
+</dialog>
 <Footer />

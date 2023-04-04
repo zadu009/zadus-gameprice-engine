@@ -3,42 +3,41 @@
 	import Navbar from '../Navbar.svelte';
 	import Footer from '../Footer.svelte';
 	import { userProfile } from '../stores.js';
+	import { goto } from '$app/navigation';
 
-	let route = '/signin';
-	function login() {
-		if (validation_check(email, password)) {
-			$userProfile = { isLoggedIn: true };
-			route = '/mygames';
-		}
-	}
 	let email = '';
 	let password = '';
-	let countryCode = 'de';
-	let averagePrice = '';
-	let gameslist = [
-		{ id: 'J---aiyznGQ', price: 'Keyboard Cat' },
-		{ id: 'z_AbfPXTKms', price: 'Maru' },
-		{ id: 'OUtn3pvWmpg', price: 'Henri The Existential Cat' }
-	];
-	let gamedata = [];
-	export async function load() {
-		const res = await fetch('/api/game/getValue', {
-			method: 'POST',
-			body: JSON.stringify({
-				name,
-				platform,
-				countryCode
-			}),
-			headers: {
-				'Content-Type': 'application/json; charset=utf-8'
-			},
-			mode: 'cors'
-		});
-		const data = await res.json();
-		console.log(data);
-		gamedata = data.gamesList;
-		gameslist = JSON.stringify(data.gamesList);
-		averagePrice = JSON.stringify(data.averagePrice);
+	let loggingresult;
+	export async function checkSignIn() {
+		if (validation_check(email, password)) {
+			const res = await fetch('/api/game/checkSignIn', {
+				method: 'POST',
+				body: JSON.stringify({
+					email,
+					password
+				}),
+				headers: {
+					'Content-Type': 'application/json; charset=utf-8'
+				},
+				mode: 'cors'
+			});
+			const data = await res.json();
+			console.log(data);
+			const loggedIn = JSON.stringify(data.signInStatus);
+			const datamail = JSON.stringify(data.email);
+			const valueTrue = '"true"';
+			if (loggedIn === valueTrue) {
+				$userProfile = { isLoggedIn: true };
+				console.log('Hallo bin im Login');
+				loggingresult = true;
+				goto('/mygames');
+				return true;
+			} else {
+				console.log('Login Fehlgeschlagen');
+				loggingresult = false;
+				return false;
+			}
+		}
 	}
 
 	function validation_check(email, password) {
@@ -68,7 +67,7 @@
 						SIGN IN TO YOUR ACCOUNT
 					</h2>
 				</div>
-				<form class="mt-8 space-y-6" action={route}>
+				<form class="mt-8 space-y-6">
 					<input type="hidden" value="true" />
 					<div class="-space-y-px rounded-md shadow-sm">
 						<div>
@@ -103,7 +102,7 @@
 					</div>
 					<div>
 						<button
-							on:click={login}
+							on:click={checkSignIn}
 							type="submit"
 							class="group relative flex w-full justify-center rounded-md bg-amber-500 py-2 px-3 text-sm font-semibold text-white hover:bg-amber-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 						>
@@ -111,11 +110,15 @@
 						</button>
 					</div>
 				</form>
+				{#if loggingresult == false}
+				<h2 class="mt-6 text-center text-1xl font-bold tracking-tight text-red-600 font-mono">
+					LOGIN FAILED!
+				</h2>
+
+				{/if}
 			</div>
 		</div>
 	</div>
 </div>
 
 <Footer />
-
-

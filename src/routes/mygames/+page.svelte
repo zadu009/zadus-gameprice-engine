@@ -2,7 +2,35 @@
 	import '../../app.css';
 	import Navbar from '../Navbar.svelte';
 	import Footer from '../Footer.svelte';
-	let games = [];
+	import { userProfile } from '../stores.js';
+	import { onMount } from 'svelte';
+
+	onMount(() => {
+		getGames()
+		return () => console.log("On destroy...")
+	})
+	let gamesList = [];
+	export async function getGames() {
+		const res = await fetch('/api/game/getGames', {
+			method: 'POST',
+			body: JSON.stringify({
+				email
+			}),
+			headers: {
+				'Content-Type': 'application/json; charset=utf-8'
+			},
+			mode: 'cors'
+		});
+		const data = await res.json();
+		console.log(data);
+		if(data.gamesList!=null){
+			gamesList = data.gamesList;
+		}
+
+	}
+	
+	const { email, isLoggedIn } = $userProfile;
+
 	let name = '';
 	let averagePrice = 0;
 	let dialog;
@@ -11,8 +39,8 @@
 	};
 	const addItem = async () => {
 		if (validation_check(name, platform)) {
-			games = [
-				...games,
+			gamesList = [
+				...gamesList,
 				{
 					id: Math.random(),
 					name,
@@ -26,7 +54,7 @@
 	};
 	const remove = (game) => {
 		subtractFromTotalValue(game.averagePrice);
-		games = games.filter((i) => i !== game);
+		gamesList = gamesList.filter((i) => i !== game);
 	};
 
 	let totalvalue = 0;
@@ -67,6 +95,22 @@
 		gameslist = JSON.stringify(data.gamesList);
 		averagePrice = JSON.stringify(data.averagePrice);
 		return averagePrice;
+	}
+
+	export async function saveGames() {
+		const res = await fetch('/api/game/saveGames', {
+			method: 'POST',
+			body: JSON.stringify({
+				email,
+				gamesList
+			}),
+			headers: {
+				'Content-Type': 'application/json; charset=utf-8'
+			},
+			mode: 'cors'
+		});
+		const data = await res.json();
+		console.log(data);
 	}
 
 	function validation_check(name, platform) {
@@ -112,14 +156,14 @@
 									<div class="mt-8">
 										<div class="flow-root">
 											<ul role="list" class="-my-6 divide-y divide-gray-200">
-												{#each games as game}
+												{#each gamesList as game}
 													<li class="flex py-6">
 														<div
 															class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200"
 														>
 															<img
-																src="https://tailwindui.com/img/ecommerce-images/shopping-cart-page-04-product-01.jpg"
-																alt="Salmon orange fabric pouch with match zipper, gray zipper pull, and adjustable hip belt."
+															    src="https://img.icons8.com/color/96/000000/controller.png"
+																alt="Videogame"
 																class="h-full w-full object-cover object-center"
 															/>
 														</div>
@@ -178,13 +222,17 @@
 										<p>Collection value</p>
 										<p>{totalvalue}</p>
 									</div>
-									<div class="mt-6 pb-8">
-										<a
-											href="#"
-											class="flex items-center justify-center rounded-md  bg-amber-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-											>Save</a
-										>
-									</div>
+									<form action="#">
+										<input type="hidden"/>
+										<div class="mt-6 pb-8">
+											<button
+												type="submit"
+												on:click={saveGames}
+												class="flex items-center justify-center rounded-md  bg-amber-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
+												>Save
+											</button>
+										</div>
+									</form>
 								</div>
 							</div>
 						</div>
@@ -208,7 +256,6 @@
 				</h2>
 			</div>
 			<form class="mt-8 space-y-6" action="#">
-				<input type="hidden" name="remember" value="true" />
 				<div class="-space-y-px rounded-md shadow-sm">
 					<div>
 						<label for="videogame-title" class="sr-only">Videogame title</label>

@@ -1,32 +1,55 @@
 <script>
 	import '../../app.css';
-    import Navbar from '../Navbar.svelte';
+	import Navbar from '../Navbar.svelte';
 	import Footer from '../Footer.svelte';
 	import { userProfile } from '../stores.js';
-
-	function login() {
-		if (validation_check(email, password)) {
-			$userProfile = { isLoggedIn: true };
-		}
-	}
+	import { goto } from '$app/navigation';
 
 	let email = '';
 	let password = '';
-	let username = '';
-	let averagePrice = '';
-	let gameslist = [
-		{ id: 'J---aiyznGQ', price: 'Keyboard Cat' },
-		{ id: 'z_AbfPXTKms', price: 'Maru' },
-		{ id: 'OUtn3pvWmpg', price: 'Henri The Existential Cat' }
-	];
-	let gamedata = [];
-	export async function load() {
-		const res = await fetch('/api/game/getValue', {
+	let nickname = '';
+	let loggingresult;
+	export async function checkIfUserExists() {
+		if (validation_check(email, nickname)) {
+			const res = await fetch('/api/game/checkIfUserExists', {
+				method: 'POST',
+				body: JSON.stringify({
+					email,
+					nickname
+				}),
+				headers: {
+					'Content-Type': 'application/json; charset=utf-8'
+				},
+				mode: 'cors'
+			});
+			const data = await res.json();
+			console.log(data);
+			const userExists = JSON.stringify(data.userExistStatus);
+			const datamail = JSON.stringify(data.email);
+			const valueTrue = '"true"';
+			const valueFalse = '"false"';
+			if (userExists === valueFalse) {
+				$userProfile = {email: email, isLoggedIn: true };
+				console.log('Hallo bin im Login');
+				signUpEngineUser();
+				loggingresult = true;
+				goto('/mygames');
+				return true;
+			} else {
+				console.log('Username oder Email existiert bereits');
+				loggingresult = false;
+				return false;
+			}
+		}
+	}
+
+	export async function signUpEngineUser() {
+		const res = await fetch('/api/game/saveEngineuser', {
 			method: 'POST',
 			body: JSON.stringify({
 				email,
-				password,
-				username
+				nickname,
+				password
 			}),
 			headers: {
 				'Content-Type': 'application/json; charset=utf-8'
@@ -35,23 +58,29 @@
 		});
 		const data = await res.json();
 		console.log(data);
-		gamedata = data.gamesList;
-		gameslist = JSON.stringify(data.gamesList);
-		averagePrice = JSON.stringify(data.averagePrice);
+		loggingresult = true;
 	}
 
-	function validation_check(email, password) {
-		if (email === '') {
+	function validation_check(email, nickname, password) {
+		if (!validateEmail(email)) {
 			return false;
 		} else if (password === '') {
+			return false;
+		} else if (nickname === '') {
 			return false;
 		} else {
 			return true;
 		}
 	}
+
+	function validateEmail(email) {
+		var emailRegEx =
+			/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+		return emailRegEx.test(String(email).toLowerCase());
+	}
 </script>
 
-<Navbar/>
+<Navbar />
 
 <div
 	class="flex min-h-full items-center justify-center relative isolate overflow-hidden bg-gray-900 py-16"
@@ -69,7 +98,7 @@
 						CREATE YOUR GAMEPRICE-ENGINE-ACCOUNT NOW!
 					</h2>
 				</div>
-				<form class="mt-8 space-y-6" action="/mygames">
+				<form class="mt-8 space-y-6" action="#">
 					<input type="hidden" name="remember" value="true" />
 					<div class="-space-y-px rounded-md shadow-sm">
 						<div>
@@ -92,7 +121,7 @@
 								required
 								class="relative block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-100 sm:text-sm sm:leading-6"
 								placeholder="Username"
-								bind:value={username}
+								bind:value={nickname}
 							/>
 						</div>
 						<div class="pt-2">
@@ -108,7 +137,8 @@
 						</div>
 					</div>
 					<div>
-						<button on:click={login}
+						<button
+							on:click={checkIfUserExists}
 							type="submit"
 							class="group relative flex w-full justify-center rounded-md bg-amber-500 py-2.5 px-3.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
 						>
@@ -116,6 +146,11 @@
 						</button>
 					</div>
 				</form>
+				{#if loggingresult == false}
+					<h2 class="mt-6 text-center text-1xl font-bold tracking-tight text-red-600 font-mono">
+						EMAIL OR USERNAME ALREADY REGISTERED!
+					</h2>
+				{/if}
 			</div>
 		</div>
 	</div>

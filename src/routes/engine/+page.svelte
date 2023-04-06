@@ -61,19 +61,18 @@
 						alt="Your Company"
 					/>
 					<h2 class="mt-6 text-center text-2xl font-bold tracking-tight text-gray-300 font-mono">
-						HOW MUCH IS YOUR GAME WORTH?
+						HOW MUCH IS YOUR <a class="text-amber-500">GAME</a> WORTH?
 					</h2>
 					<h2 class="text-center text-2xl font-bold tracking-tight text-gray-300 font-mono ">
-						GET YOUR GAMEVALUE NOW!
+						GET YOUR <a class="text-amber-500">GAMEVALUE</a> NOW!
 					</h2>
 					<p class="mt-2 text-center text-sm text-gray-600">
-						You have a games collection?
 						{#if $userProfile.isLoggedIn == true}
-							<a href="mygames" class="font-medium text-indigo-600 hover:text-indigo-500">Sign in</a> and
-							get a gamevalue for your whole collection!
+							Want a gamevalue for your whole collection?
+							<a href="mygames" class="font-medium text-indigo-600 hover:text-indigo-500">Sign in</a>
 							{:else}
-							<a href="signin" class="font-medium text-indigo-600 hover:text-indigo-500">Sign in</a> and
-							get a gamevalue for your whole collection!
+							Want a gamevalue for your whole collection?
+							<a href="signin" class="font-medium text-indigo-600 hover:text-indigo-500">Sign in</a>
 						{/if}
 
 					</p>
@@ -124,27 +123,13 @@
 	</div>
 </div>
 
+
 {#if averagePrice > 0}
 	<div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
 		<div class="animate-pulse flex space-x-4">
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				fill="none"
-				viewBox="0 0 24 24"
-				stroke-width="1.5"
-				stroke="green"
-				class="w-10 h-1o"
-			>
-				<path
-					stroke-linecap="round"
-					stroke-linejoin="round"
-					d="M14.25 7.756a4.5 4.5 0 100 8.488M7.5 10.5h5.25m-5.25 3h5.25M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-				/>
-			</svg>
-
 			<div class="flex-1 space-y-6 py-1">
-				<h2 class="text-center text-2xl font-bold tracking-tight text-gray-400">
-					{averagePrice}
+				<h2 class="text-center text-2xl font-bold font-mono tracking-tight text-gray-400">
+					Avg. Price {averagePrice}€
 				</h2>
 			</div>
 		</div>
@@ -167,7 +152,7 @@
 						/>
 					</div>
 					<h3 class="mt-4 text-sm text-gray-400">{name}</h3>
-					<p class="mt-1 text-lg font-medium text-gray-400">{data.price}</p>
+					<p class="mt-1 text-lg font-medium text-gray-400">Sold for {data.price}€</p>
 				</a>
 			{/each}
 		</div>

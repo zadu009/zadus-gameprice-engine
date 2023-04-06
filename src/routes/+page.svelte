@@ -1,8 +1,8 @@
 <script>
 	import '../app.css';
 	import { fly } from 'svelte/transition';
-    import Navbar from './Navbar.svelte';
-    import Footer from './Footer.svelte';
+	import Navbar from './Navbar.svelte';
+	import Footer from './Footer.svelte';
 	let name = '';
 	let platform = '';
 	let countryCode = 'de';
@@ -51,21 +51,21 @@
 	}
 </script>
 
-<Navbar/>
+<Navbar />
 
 <div class="relative isolate overflow-hidden bg-gray-900 py-16 sm:py-24 lg:py-32">
 	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<div class="mx-auto grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 lg:max-w-none lg:grid-cols-2">
 			<div class="max-w-xl lg:max-w-lg">
 				<h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl font-mono">
-					WELCOME TO ZADU'S GAMEPRICE ENGINE! <img
+					WELCOME TO <a class="text-amber-500">ZADU'S</a> GAMEPRICE ENGINE! <img
 						src="https://img.icons8.com/color/96/000000/controller.png"
 						alt="Your Company"
 					/>
 				</h2>
 				<p class="mt-4 text-lg leading-8 text-gray-300 font-mono">
-					You want to know how much your game is worth? You've come to the right place!
-                    Zadu's Game-Engine will give you the average cost of your games.
+					Want to know how much your game is worth? You've come to the right place! Zadu's
+					Game-Engine will give you the average cost of your games.
 				</p>
 				<div class="mt-6 flex max-w-md gap-x-4">
 					<a href="/engine">
@@ -97,7 +97,7 @@
 					</div>
 					<dt class="mt-4 font-semibold text-white">Single Game</dt>
 					<dd class="mt-2 leading-7 text-gray-400">
-						Here you can get the average price for your single game.
+						You can get the average price for your single game.
 					</dd>
 				</div>
 				<div class="flex flex-col items-start">
@@ -152,6 +152,7 @@
 		</defs>
 	</svg>
 </div>
+
 <div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-900">
 	<h2 class="mt-6 text-center text-2xl font-bold tracking-tight text-gray-300 font-mono ">
 		Dredge is a fishing adventure with a sinister undercurrent. Sell your catch, upgrade your vessel
@@ -229,4 +230,4 @@
 	</div>
 {/if}
 
-<Footer/>
+<Footer />

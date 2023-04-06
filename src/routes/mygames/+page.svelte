@@ -6,9 +6,9 @@
 	import { onMount } from 'svelte';
 
 	onMount(() => {
-		getGames()
-		return () => console.log("On destroy...")
-	})
+		getGames();
+		return () => console.log('On destroy...');
+	});
 	let gamesList = [];
 	export async function getGames() {
 		const res = await fetch('/api/game/getGames', {
@@ -23,12 +23,11 @@
 		});
 		const data = await res.json();
 		console.log(data);
-		if(data.gamesList!=null){
+		if (data.gamesList != null) {
 			gamesList = data.gamesList;
 		}
-
 	}
-	
+
 	const { email, isLoggedIn } = $userProfile;
 
 	let name = '';
@@ -139,7 +138,7 @@
 						alt="Your Company"
 					/>
 					<h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-300 font-mono">
-						MY VIDEOGAME COLLECTION
+						MY GAME COLLECTION
 					</h2>
 				</div>
 
@@ -162,7 +161,7 @@
 															class="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200"
 														>
 															<img
-															    src="https://img.icons8.com/color/96/000000/controller.png"
+																src="https://img.icons8.com/color/96/000000/controller.png"
 																alt="Videogame"
 																class="h-full w-full object-cover object-center"
 															/>
@@ -174,7 +173,7 @@
 																	<h3>
 																		<a href="#">{game.name}</a>
 																	</h3>
-																	<p class="ml-4">{game.averagePrice}</p>
+																	<p class="ml-4">Avg. {game.averagePrice}€</p>
 																</div>
 																<p class="mt-1 text-sm text-gray-500">{game.platform}</p>
 															</div>
@@ -194,45 +193,39 @@
 										</div>
 									</div>
 								</div>
-								<div class="p-6">
-									<button
-										on:click={() => dialog.showModal()}
-										class="px-6 py-3 items-center justify-center bg-amber-500 text-white font-bold rounded inline-flex items-center"
-									>
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											fill="none"
-											viewBox="0 0 24 24"
-											stroke-width="1.5"
-											stroke="currentColor"
-											class="w-6 h-6"
+								<div class="flex items-stretch items-center justify-center py-2 border-t border-amber-600 flex space-x-4">
+									<div class="py-4">
+										<button
+											on:click={() => dialog.showModal()}
+											class="px-6 py-3 items-center justify-center bg-amber-500 text-white font-bold rounded inline-flex items-center"
 										>
-											<path
-												stroke-linecap="round"
-												stroke-linejoin="round"
-												d="M12 4.5v15m7.5-7.5h-15"
-											/>
-										</svg>
-										<span>Add Game</span>
-									</button>
-								</div>
-
-								<div class="border-t border-amber-600 px-4 py-6 sm:px-6">
-									<div class="flex justify-between text-base font-medium text-white">
-										<p>Collection value</p>
-										<p>{totalvalue}</p>
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												fill="none"
+												viewBox="0 0 24 24"
+												stroke-width="1.5"
+												stroke="currentColor"
+												class="w-6 h-6"
+											>
+												<path
+													stroke-linecap="round"
+													stroke-linejoin="round"
+													d="M12 4.5v15m7.5-7.5h-15"
+												/>
+											</svg>
+											<span>Add Game</span>
+										</button>
 									</div>
-									<form action="#">
-										<input type="hidden"/>
-										<div class="mt-6 pb-8">
-											<button
-												type="submit"
-												on:click={saveGames}
-												class="flex items-center justify-center rounded-md  bg-amber-500 px-6 py-3 text-base font-medium text-white shadow-sm hover:bg-indigo-700"
-												>Save
-											</button>
-										</div>
-									</form>
+									<div class="py-6">
+										<form action="#">
+												<button
+													type="submit"
+													on:click={saveGames}
+													class="px-6 py-3 items-center justify-center bg-amber-500 text-white font-bold rounded inline-flex items-center"
+													>Save
+												</button>
+										</form>
+									</div>
 								</div>
 							</div>
 						</div>

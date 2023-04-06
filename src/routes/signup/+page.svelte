@@ -9,8 +9,9 @@
 	let password = '';
 	let nickname = '';
 	let loggingresult;
+	let passwordValid;
 	export async function checkIfUserExists() {
-		if (validation_check(email, nickname)) {
+		if (validation_check(email, nickname, password)) {
 			const res = await fetch('/api/game/checkIfUserExists', {
 				method: 'POST',
 				body: JSON.stringify({
@@ -29,7 +30,7 @@
 			const valueTrue = '"true"';
 			const valueFalse = '"false"';
 			if (userExists === valueFalse) {
-				$userProfile = {email: email, isLoggedIn: true };
+				$userProfile = { email: email, isLoggedIn: true };
 				console.log('Hallo bin im Login');
 				signUpEngineUser();
 				loggingresult = true;
@@ -64,7 +65,8 @@
 	function validation_check(email, nickname, password) {
 		if (!validateEmail(email)) {
 			return false;
-		} else if (password === '') {
+		} else if (password.length < 8) {
+			passwordValid = false;
 			return false;
 		} else if (nickname === '') {
 			return false;
@@ -95,12 +97,15 @@
 						alt="Your Company"
 					/>
 					<h2 class="mt-6 text-center text-2xl font-bold tracking-tight text-gray-300 font-mono">
-						CREATE YOUR GAMEPRICE-ENGINE-ACCOUNT NOW!
+						CREATE YOUR ACCOUNT NOW!
 					</h2>
 				</div>
-				<form class="mt-8 space-y-6" action="#">
+				<form class="space-y-2" action="#">
 					<input type="hidden" name="remember" value="true" />
 					<div class="-space-y-px rounded-md shadow-sm">
+						<label for="first-name" class="block text-sm font-semibold leading-6 text-gray-300"
+							>Email</label
+						>
 						<div>
 							<input
 								id="email"
@@ -108,11 +113,14 @@
 								type="email"
 								required
 								class="relative block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-100 sm:text-sm sm:leading-6"
-								placeholder="Email address"
 								bind:value={email}
 							/>
 						</div>
+
 						<div class="pt-2">
+							<label for="first-name" class="block text-sm font-semibold leading-6 text-gray-300"
+								>Username</label
+							>
 							<input
 								id="username"
 								name="username"
@@ -120,23 +128,24 @@
 								autocomplete="username"
 								required
 								class="relative block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-100 sm:text-sm sm:leading-6"
-								placeholder="Username"
 								bind:value={nickname}
 							/>
 						</div>
 						<div class="pt-2">
+							<label for="first-name" class="block text-sm font-semibold leading-6 text-gray-300"
+								>Password</label
+							>
 							<input
 								id="password"
 								name="password"
 								type="password"
 								required
 								class="relative block w-full rounded-md border-0 py-1.5 pl-2 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:z-10 focus:ring-2 focus:ring-inset focus:ring-indigo-100 sm:text-sm sm:leading-6"
-								placeholder="Password"
 								bind:value={password}
 							/>
 						</div>
 					</div>
-					<div>
+					<div class="pt-2">
 						<button
 							on:click={checkIfUserExists}
 							type="submit"
@@ -149,6 +158,11 @@
 				{#if loggingresult == false}
 					<h2 class="mt-6 text-center text-1xl font-bold tracking-tight text-red-600 font-mono">
 						EMAIL OR USERNAME ALREADY REGISTERED!
+					</h2>
+				{/if}
+				{#if passwordValid == false}
+					<h2 class="mt-6 text-center text-1xl font-bold tracking-tight text-red-600 font-mono">
+						Password must be at least 8 characters
 					</h2>
 				{/if}
 			</div>

@@ -58,10 +58,8 @@
 		<div class="mx-auto grid max-w-2xl grid-cols-1 gap-y-16 gap-x-8 lg:max-w-none lg:grid-cols-2">
 			<div class="max-w-xl lg:max-w-lg">
 				<h2 class="text-3xl font-bold tracking-tight text-white sm:text-4xl font-mono">
-					WELCOME TO <a class="text-amber-500">ZADU'S</a> GAMEPRICE ENGINE! <img
-						src="https://img.icons8.com/color/96/000000/controller.png"
-						alt="Your Company"
-					/>
+					WELCOME TO <a class="text-amber-500">ZADU'S</a> GAMEPRICE ENGINE!
+					<img src="https://img.icons8.com/color/96/000000/controller.png" alt="Your Company" />
 				</h2>
 				<p class="mt-4 text-lg leading-8 text-gray-300 font-mono">
 					Want to know how much your game is worth? You've come to the right place! Zadu's
@@ -71,7 +69,7 @@
 					<a href="/engine">
 						<button
 							type="submit"
-							class="flex-none rounded-md bg-amber-500 py-2.5 px-3.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+							class="flex-none rounded-md bg-amber-500 py-2.5 px-3.5 text-sm font-semibold text-white shadow-sm hover:bg-amber-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
 							>Try out now!</button
 						>
 					</a>
@@ -151,15 +149,6 @@
 			</linearGradient>
 		</defs>
 	</svg>
-</div>
-
-<div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-900">
-	<h2 class="mt-6 text-center text-2xl font-bold tracking-tight text-gray-300 font-mono ">
-		Dredge is a fishing adventure with a sinister undercurrent. Sell your catch, upgrade your vessel
-		and dredge the depths for long-buried relics. Explore the stories of the strange locals and
-		discover why some things are best left forgotten. Someone wants very badly to retrieve relics
-		lost to the ocean floor.
-	</h2>
 </div>
 
 <svelte:window on:scroll={updateY} bind:scrollY={y} />

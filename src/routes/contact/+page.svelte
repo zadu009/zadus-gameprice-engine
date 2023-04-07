@@ -56,14 +56,25 @@
 </script>
 
 <Navbar />
-<div class="isolate px-6 py-24 sm:py-32 lg:px-8">
-	<div class="mx-auto max-w-2xl text-center">
-		<p class="mt-2 text-3xl font-mono tracking-tight text-gray-300 sm:text-4xl">CONTACT ZADU</p>
-		<p class="mt-2 text-lg leading-8 text-white">
-			Write me a message and i will get back to you asap!
-		</p>
+<div class="pt-12">
+	<div class="mx-auto max-w-7xl px-4 lg:px-8">
+		<div class="mx-auto max-w-2xl lg:text-center">
+			<img
+				class="mx-auto h-12 w-auto"
+				src="https://img.icons8.com/color/96/000000/controller.png"
+				alt="Your Company"
+			/>
+			<p class=" text-center mt-2 text-3xl font-mono tracking-tight text-gray-300 sm:text-4xl">
+				Contact <a class="text-amber-500">Zadu</a>
+			</p>
+			<p class="mt-6 text-lg leading-8 text-gray-600 pb-8">
+                Write me a message and i will get back to you asap!
+			</p>
+		</div>
 	</div>
-	<form class="mx-auto mt-16 max-w-xl sm:mt-20">
+</div>
+<div class="isolate px-6 lg:px-8">
+	<form class="mx-auto max-w-xl">
 		<div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
 			<div>
 				<label for="first-name" class="block text-sm font-semibold leading-6 text-gray-300"
@@ -147,7 +158,7 @@
 			<button
 				on:click={sendMessage}
 				type="submit"
-				class="block w-full rounded-md bg-amber-500  px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+				class="block w-full rounded-md bg-amber-500  px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-amber-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 				>Let's talk</button
 			>
 		</div>

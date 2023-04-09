@@ -6,7 +6,6 @@ export default defineConfig({
         proxy: {
             '/api': {
                 target: 'https://dedurrani-itconsultingflatter-production.up.railway.app',
-                rewrite: (path) => path.replace(/^\/api/, ''),
                 changeOrigin: true
             }
         }

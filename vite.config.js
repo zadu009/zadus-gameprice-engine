@@ -5,7 +5,7 @@ export default defineConfig({
     server: {
         proxy: {
             '/api': {
-                target: 'http://[::1]:6002',
+                target: 'https://dedurrani-itconsultingflatter-production.up.railway.app',
                 rewrite: (path) => path.replace(/^\/api/, ''),
                 changeOrigin: true
             }

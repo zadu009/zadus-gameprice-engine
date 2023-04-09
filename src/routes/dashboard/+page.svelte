@@ -11,6 +11,7 @@
 	});
 	let gamesList = [];
 	let sum = 0;
+	let sumString = '';
 	export async function getGames() {
 		const res = await fetch('/api/game/getGames', {
 			method: 'POST',
@@ -27,6 +28,7 @@
 		if (data.gamesList != null) {
 			gamesList = data.gamesList;
 			sum = gamesList.map(game => game.averagePrice).reduce((acc, amount) => acc + amount);
+			sumString = sum.toFixed(2);
 		}
 	}
 
@@ -95,7 +97,7 @@
 							<h2
 								class="mb-4 text-3xl text-amber-600 font-bold font-heading tracking-px-n leading-none"
 							>
-								{sum}
+								{sumString}€
 							</h2>
 						</div>
 					</div>

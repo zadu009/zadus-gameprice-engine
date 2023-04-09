@@ -18,8 +18,8 @@
 				About <a class="text-amber-500">Us</a>
 			</p>
 			<p class="mt-6 text-lg leading-8 text-gray-600 pb-8">
-				My svelte web-application is a useful tool for every videogame fan. The web-application
-				provides information about videogame-pricing. The user can get an average price for his
+				My website is a useful tool for every one who loves videogames. The web-application
+				provides real time information about videogame-pricing. The user can get an average price for his
 				game. Also interesting for people who wants to sell their games. With zadus-gamerice-engine
 				they will have the actual market-value of the game.
 			</p>
@@ -60,7 +60,7 @@
 				</dt>
 				<dd class="mt-2 text-base leading-7 text-gray-600">
 					<h2 class="text-lg leading-8 text-gray-300 font-mono">
-						Enter the title of your game and the name of the platform. And Press GO!
+						Enter the title of your game and then enter name of the platform and Press GO!
 					</h2>
 				</dd>
 			</div>

@@ -15,7 +15,7 @@
 	let gamedata = [];
 	export async function load() {
 		if (validation_check(name, platform)) {
-			const res = await fetch('/api/game/getValue', {
+			const res = await fetch('/game/getValue', {
 				method: 'POST',
 				body: JSON.stringify({
 					name,

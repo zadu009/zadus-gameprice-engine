@@ -15,7 +15,7 @@
 	let gamedata = [];
 	export async function load() {
 		if (validation_check(name, platform)) {
-			const res = await fetch('/game/getValue', {
+			const res = await fetch('https://dedurrani-itconsultingflatter-production.up.railway.app/game/getValue', {
 				method: 'POST',
 				body: JSON.stringify({
 					name,

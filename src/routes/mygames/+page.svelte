@@ -36,6 +36,11 @@
 	const closeDialog = () => {
 		dialog.close();
 	};
+
+	let savedDialog;
+	const closeSavedDialog = () => {
+		savedDialog.close();
+	};
 	const addItem = async () => {
 		if (validation_check(name, platform)) {
 			gamesList = [
@@ -110,6 +115,7 @@
 		});
 		const data = await res.json();
 		console.log(data);
+		savedDialog.showModal();
 	}
 
 	function validation_check(name, platform) {
@@ -193,7 +199,9 @@
 										</div>
 									</div>
 								</div>
-								<div class="flex items-stretch items-center justify-center py-2 border-t border-amber-600 flex space-x-4">
+								<div
+									class="flex items-stretch items-center justify-center py-2 border-t border-amber-600 flex space-x-4"
+								>
 									<div class="py-4">
 										<button
 											on:click={() => dialog.showModal()}
@@ -218,12 +226,12 @@
 									</div>
 									<div class="py-6">
 										<form action="#">
-												<button
-													type="submit"
-													on:click={saveGames}
-													class="px-6 py-3 items-center justify-center bg-amber-500 text-white font-bold rounded inline-flex items-center"
-													>Save
-												</button>
+											<button
+												type="submit"
+												on:click={saveGames}
+												class="px-6 py-3 items-center justify-center bg-amber-500 text-white font-bold rounded inline-flex items-center"
+												>Save
+											</button>
 										</form>
 									</div>
 								</div>
@@ -294,6 +302,29 @@
 					</button>
 				</div>
 			</form>
+		</div>
+	</div>
+</dialog>
+
+<dialog bind:this={savedDialog} on:close class="rounded-md">
+	<div class="rounded-md mx-auto ">
+		<div class="w-full max-w-md">
+			<div>
+				<img
+					class="mx-auto h-12 w-auto"
+					src="https://img.icons8.com/color/96/000000/controller.png"
+					alt="Your Company"
+				/>
+				<h2 class="mt-6 text-center text-2xl font-bold tracking-tight text-gray-600 font-mono">
+					YOUR GAMES ARE SAVED!
+				</h2>
+			</div>
+			<button
+				on:click={closeSavedDialog}
+				class="group relative flex w-full justify-center rounded-md bg-amber-500 py-2 pt-2 text-sm font-semibold text-white hover:bg-amber-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+			>
+				OK
+			</button>
 		</div>
 	</div>
 </dialog>

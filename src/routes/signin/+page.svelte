@@ -30,7 +30,7 @@
 				$userProfile = { email: email, isLoggedIn: true };
 				console.log('Hallo bin im Login');
 				loggingresult = true;
-				goto('/mygames');
+				goto('/dashboard');
 				return true;
 			} else {
 				console.log('Login Fehlgeschlagen');

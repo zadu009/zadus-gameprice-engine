@@ -34,7 +34,7 @@
 				console.log('Hallo bin im Login');
 				signUpEngineUser();
 				loggingresult = true;
-				goto('/mygames');
+				goto('/dashboard');
 				return true;
 			} else {
 				console.log('Username oder Email existiert bereits');

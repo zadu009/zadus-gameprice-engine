@@ -69,12 +69,12 @@
 					<p class="mt-2 text-center text-sm text-gray-600">
 						{#if $userProfile.isLoggedIn == true}
 							Want a gamevalue for your whole collection?
-							<a href="mygames" class="font-medium text-indigo-600 hover:text-indigo-500">Sign in</a>
-							{:else}
+							<a href="mygames" class="font-medium text-indigo-600 hover:text-indigo-500">Sign in</a
+							>
+						{:else}
 							Want a gamevalue for your whole collection?
 							<a href="signin" class="font-medium text-indigo-600 hover:text-indigo-500">Sign in</a>
 						{/if}
-
 					</p>
 				</div>
 				<form class="mt-8 space-y-6" action="#">
@@ -123,13 +123,12 @@
 	</div>
 </div>
 
-
 {#if averagePrice > 0}
 	<div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">
 		<div class="animate-pulse flex space-x-4">
 			<div class="flex-1 space-y-6 py-1">
 				<h2 class="text-center text-2xl font-bold font-mono tracking-tight text-gray-400">
-					Avg. Price {averagePrice}€
+					Avg. Price <a class="text-amber-500"> {averagePrice}€</a>
 				</h2>
 			</div>
 		</div>

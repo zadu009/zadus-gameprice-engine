@@ -75,24 +75,24 @@
 						<!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
 						<a
 							href="/"
-							class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium font-mono"
-							>Zadu</a
+							class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium font-mono"
+							>Home</a
 						>
 
 						<a
 							href="engine"
-							class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium font-mono"
+							class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium font-mono"
 							>Game-Price-Engine</a
 						>
 						<a
 							href="aboutus"
-							class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium font-mono"
+							class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium font-mono"
 							>About us</a
 						>
 
 						<a
 							href="contact"
-							class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium font-mono"
+							class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-lg font-medium font-mono"
 							>Contact</a
 						>
 					</div>
@@ -183,7 +183,7 @@
 				<a
 					href="/"
 					class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium font-mono"
-					>Zadu</a
+					>Home</a
 				>
 
 				<a

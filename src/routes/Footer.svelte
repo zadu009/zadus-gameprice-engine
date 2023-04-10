@@ -85,7 +85,7 @@
 						class="flex pb-6 font-medium text-gray-500 dark:text-gray-400"
 					>
 						<li>
-							<a href="/" class="mr-4 hover:underline md:mr-6 ">Zadu</a>
+							<a href="/" class="mr-4 hover:underline md:mr-6 ">Home</a>
 						</li>
 						<li>
 							<a href="/aboutus" class="mr-4 hover:underline md:mr-6">About us</a>

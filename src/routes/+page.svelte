@@ -47,7 +47,7 @@
 				</h2>
 				<p class="mt-4 text-lg leading-8 text-gray-300 font-mono">
 					Want to know how much your game is worth? You've come to the right place! Zadu's
-					Game-Engine will give you the average cost of your games.
+					Game-Engine will give you the average price of your games.
 				</p>
 				<div class="mt-6 flex max-w-md gap-x-4">
 					<a href="/engine">

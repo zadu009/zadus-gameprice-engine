@@ -21,7 +21,7 @@
 				My website is a useful tool for every one who loves videogames. The web-application
 				provides real time information about videogame-pricing. The user can get an average price for his
 				game. Also interesting for people who wants to sell their games. With zadus-gameprice-engine
-				you hey will have the actual market-value of your game.
+				you will have the actual market-value of your game.
 			</p>
 		</div>
 	</div>

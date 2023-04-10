@@ -10,7 +10,6 @@
 	onMount(() => {
 		activateSpinner = true;
 		getGames();
-		activateSpinner = false;
 		return () => console.log('On destroy...');
 	});
 	let gamesList = [];
@@ -30,6 +29,7 @@
 		if (data.gamesList != null) {
 			gamesList = data.gamesList;
 		}
+		activateSpinner = false;
 	}
 
 	const { email, isLoggedIn } = $userProfile;
@@ -58,8 +58,8 @@
 				}
 			];
 			addToTotalValue();
-			activateSpinner = false;
 			closeDialog();
+			activateSpinner = false;
 		}
 	};
 	const remove = (game) => {

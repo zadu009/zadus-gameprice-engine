@@ -80,7 +80,7 @@
 					</a>
 				</div>
 
-				<div class="mb-6 flex justify-center">
+				<div class="mb-8 flex justify-center">
 					<ul
 						class="flex pb-6 font-medium text-gray-500 dark:text-gray-400"
 					>
@@ -94,10 +94,10 @@
 							<a href="/contact" class="mr-4 hover:underline md:mr-6">Contact</a>
 						</li>
 						<li>
-							<a href="/signin" class="hover:underline md:mr-6">Login</a>
+							<a href="/signin" class="mr-4 hover:underline md:mr-6">Login</a>
 						</li>
 						<li>
-							<a href="/privacy" class="hover:underline">Privacy</a>
+							<a href="/privacy" class="hover:underline md:mr-6">Privacy</a>
 						</li>
 					</ul>
 				</div>

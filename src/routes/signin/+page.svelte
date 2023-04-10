@@ -8,9 +8,9 @@
 	let email = '';
 	let password = '';
 	let loggingresult;
-	let deactivateButton = false;
+	let activateSpinner = false;
 	export async function checkSignIn() {
-		deactivateButton = true;
+		activateSpinner = true;
 		if (validation_check(email, password)) {
 			const res = await fetch('/api/game/checkSignIn', {
 				method: 'POST',
@@ -33,12 +33,12 @@
 				console.log('Hallo bin im Login');
 				loggingresult = true;
 				goto('/dashboard');
-				deactivateButton = true;
+				activateSpinner = false;
 				return true;
 			} else {
 				console.log('Login Fehlgeschlagen');
 				loggingresult = false;
-				deactivateButton = true;
+				activateSpinner = false;
 				return false;
 			}
 		}
@@ -46,13 +46,12 @@
 
 	function validation_check(email, password) {
 		if (!validateEmail(email)) {
-			deactivateButton = true
+			activateSpinner = false
 			return false;
 		} else if (password === '') {
-			deactivateButton = true
+			activateSpinner = false
 			return false;
 		} else {
-			deactivateButton = true
 			return true;
 		}
 	}
@@ -133,7 +132,7 @@
 	</div>
 </div>
 
-{#if deactivateButton === true}
+{#if activateSpinner === true}
 	<div
 		style="  display: flex;
 align-items: center;

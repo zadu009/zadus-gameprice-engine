@@ -13,9 +13,9 @@
 		{ id: 'OUtn3pvWmpg', price: 'Henri The Existential Cat' }
 	];
 	let gamedata = [];
-	let deactivateButton = false;
+	let activateSpinner = false;
 	export async function load() {
-		deactivateButton = true;
+		activateSpinner = true;
 		if (validation_check(name, platform)) {
 			const res = await fetch('/api/game/getValue', {
 				method: 'POST',
@@ -34,7 +34,7 @@
 			gamedata = data.gamesList;
 			gameslist = JSON.stringify(data.gamesList);
 			averagePrice = JSON.stringify(data.averagePrice);
-			deactivateButton = false;
+			activateSpinner = false;
 		}
 	}
 
@@ -114,7 +114,7 @@
 					<div>
 						<button
 							type="submit"
-							disabled={deactivateButton}
+							disabled={activateSpinner}
 							on:click={load}
 							class="group relative flex w-full justify-center rounded-md bg-amber-500 py-2 px-3 text-sm font-semibold text-white hover:bg-amber-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
 						>
@@ -162,7 +162,7 @@
 	</div>
 {/if}
 
-{#if deactivateButton === true}
+{#if activateSpinner === true}
 	<div
 		style="  display: flex;
 align-items: center;

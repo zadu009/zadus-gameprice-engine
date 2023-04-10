@@ -11,7 +11,7 @@
 	});
 	let gamesList = [];
 	let sum = 0;
-	let sumString = '';
+	let sumString = '0';
 	export async function getGames() {
 		const res = await fetch('/api/game/getGames', {
 			method: 'POST',

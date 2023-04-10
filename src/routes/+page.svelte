@@ -1,6 +1,5 @@
 <script>
 	import '../app.css';
-	import { fly } from 'svelte/transition';
 	import Navbar from './Navbar.svelte';
 	import Footer from './Footer.svelte';
 	let name = '';
@@ -33,22 +32,7 @@
 		averagePrice = JSON.stringify(data.averagePrice);
 	}
 
-	let y;
-	let z;
 
-	let newZ = [];
-	$: oldZ = newZ[1];
-
-	let newY = [];
-	$: oldY = newY[1];
-
-	function updateY(event) {
-		newY.push(y);
-		if (newY.length > 5) {
-			newY.shift();
-		}
-		newY = newY;
-	}
 </script>
 
 <Navbar />
@@ -150,22 +134,6 @@
 		</defs>
 	</svg>
 </div>
-
-<svelte:window on:scroll={updateY} bind:scrollY={y} />
-
-{#if oldY < y}
-	<div class="flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-gray-900">
-		<h2
-			class="mt-6 text-center text-2xl font-bold tracking-tight text-gray-300 font-mono "
-			transition:fly={{ y: 300, duration: 2000 }}
-		>
-			Dredge is a fishing adventure with a sinister undercurrent. Sell your catch, upgrade your
-			vessel and dredge the depths for long-buried relics. Explore the stories of the strange locals
-			and discover why some things are best left forgotten. Someone wants very badly to retrieve
-			relics lost to the ocean floor.
-		</h2>
-	</div>
-{/if}
 
 {#if averagePrice > 0}
 	<div class="border border-blue-300 shadow rounded-md p-4 max-w-sm w-full mx-auto">

@@ -12,6 +12,7 @@
 	let firstname = '';
 	let lastname = '';
 	let message = '';
+	let checkedTrue = false;
 
 	function validateEmail(email) {
 		var emailRegEx =
@@ -27,6 +28,8 @@
 		} else if (lastname === '') {
 			return false;
 		} else if (message === '') {
+			return false;
+		} else if (checkedTrue === false) {
 			return false;
 		} else {
 			return true;
@@ -68,7 +71,7 @@
 				Contact <a class="text-amber-500">Zadu</a>
 			</p>
 			<p class="mt-6 text-lg leading-8 text-gray-600 pb-8">
-                Write me a message and i will get back to you asap!
+				Write me a message and i will get back to you asap!
 			</p>
 		</div>
 	</div>
@@ -139,10 +142,10 @@
 			</div>
 			<div class="flex gap-x-4 sm:col-span-2">
 				<div class="flex h-6 items-center">
-					<input type="checkbox" value="" class="sr-only peer" />
+					<input type="checkbox" class="sr-only peer" />
 					<span class="sr-only">Agree to policies</span>
 					<label class="relative inline-flex items-center cursor-pointer">
-						<input type="checkbox" value="" class="sr-only peer" />
+						<input required bind:checked={checkedTrue} type="checkbox" class="sr-only peer" />
 						<div
 							class="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"
 						/>
@@ -150,7 +153,7 @@
 				</div>
 				<label class="text-sm leading-6 text-gray-600" id="switch-1-label">
 					By selecting this, you agree to our
-					<a href="#" class="font-semibold text-indigo-600">privacy&nbsp;policy</a>.
+					<a href="/privacy" class="font-semibold text-indigo-600">privacy&nbsp;policy</a>.
 				</label>
 			</div>
 		</div>

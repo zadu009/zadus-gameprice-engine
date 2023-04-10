@@ -4,7 +4,7 @@
 			<div class="container min-h-full">
 				<div class="mb-6 flex justify-center">
 					<a
-						href="#!"
+						href="https://de-de.facebook.com/"
 						type="button"
 						class="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
 						data-te-ripple-init
@@ -23,7 +23,7 @@
 					</a>
 
 					<a
-						href="#!"
+						href="https://twitter.com/"
 						type="button"
 						class="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
 						data-te-ripple-init
@@ -42,7 +42,7 @@
 					</a>
 
 					<a
-						href="#!"
+						href="https://www.instagram.com/"
 						type="button"
 						class="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
 						data-te-ripple-init
@@ -61,7 +61,7 @@
 					</a>
 
 					<a
-						href="#!"
+						href="https://github.com/zadu009/zadus-gameprice-engine"
 						type="button"
 						class="m-1 h-9 w-9 rounded-full border-2 border-white uppercase leading-normal text-white transition duration-150 ease-in-out hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0"
 						data-te-ripple-init
@@ -94,7 +94,10 @@
 							<a href="/contact" class="mr-4 hover:underline md:mr-6">Contact</a>
 						</li>
 						<li>
-							<a href="/signin" class="hover:underline">Login</a>
+							<a href="/signin" class="hover:underline md:mr-6">Login</a>
+						</li>
+						<li>
+							<a href="/privacy" class="hover:underline">Privacy</a>
 						</li>
 					</ul>
 				</div>

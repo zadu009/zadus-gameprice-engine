@@ -216,6 +216,19 @@
 					class="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium font-mono"
 					>Contact</a
 				>
+				{#if userProfileValue.isLoggedIn === true}
+					<a
+						href="/dashboard"
+						class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-base font-medium font-mono"
+						>Dashboard</a
+					>
+
+					<a
+						href="/mygames"
+						class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-base font-medium font-mono"
+						>My Games</a
+					>
+				{/if}
 			</div>
 		</div>
 	{/if}

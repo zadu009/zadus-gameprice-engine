@@ -152,6 +152,13 @@
 							/>
 						</div>
 					</div>
+					<div class="text-sm">
+						<p class="mt-2 text-center text-sm text-gray-600">
+							You have already an account?
+							<a href="signin" class="font-medium text-indigo-600 hover:text-indigo-500">Sign in.</a
+							>
+						</p>
+					</div>
 					<div class="pt-2">
 						<button
 							on:click={checkIfUserExists}

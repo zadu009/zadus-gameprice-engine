@@ -101,7 +101,7 @@
 					</div>
 					<dt class="mt-4 font-semibold text-white">Game Collection</dt>
 					<dd class="mt-2 leading-7 text-gray-400">
-						You have a games collections. No Problem our game price engine will give you the avarage
+						You have a games collection? No Problem our game price engine will give you the avarage
 						value or each game.
 					</dd>
 				</div>

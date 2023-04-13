@@ -1,7 +1,15 @@
 # zadus-gameprice-engine
 My Svelte Webapp is a useful tool for every one who loves videogames. The web-application provides real time information about videogame-pricing. The user can get an average price for his game. Also interesting for people who wants to sell their games. With zadus-gameprice-engine you will have the actual market-value of your game.
 ## Live Demo
-![](https://github.com/zadu009/zadus-gameprice-engine/blob/main/Gamevalue.gif.mp4)
+Get gamevalue for a single Videogame
+
+![](https://github.com/zadu009/zadus-gameprice-engine/blob/main/GamevalueGIF.gif.gif)
+
+Singn up and get a gameprice value for a videogame collection
+
+![](https://github.com/zadu009/zadus-gameprice-engine/blob/main/SignupGiF.gif.gif)
+
+[Here is the live demo](https://zadus-gameprice-engine.vercel.app/)
 
 ## Features
 :video_game: Get gameprice value for a single videogame

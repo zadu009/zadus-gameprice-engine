@@ -27,8 +27,6 @@ or run the app on any open port
 
 `npm run dev -- --host --port 3033`
 
-## Motivation
-
 ## Technologies
 
 ### Backend

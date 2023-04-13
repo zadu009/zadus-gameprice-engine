@@ -19,7 +19,7 @@
 			</p>
 			<p class="mt-6 text-lg leading-8 text-gray-600 pb-8">
 				My website is a useful tool for every one who loves videogames. The web-application
-				provides real time information about videogame-pricing. The user can get an average price for his
+				provides real time information about videogame-pricing. The user can get an average price for their
 				game. Also interesting for people who wants to sell their games. With zadus-gameprice-engine
 				you will have the actual market-value of your game.
 			</p>
